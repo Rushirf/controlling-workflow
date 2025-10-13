@@ -1,10 +1,17 @@
 name: Reusable Workflow
-on: workflow_call
+on: 
+    workflow_call:
+      inputs:
+        artifact-name:
+          description: 'Name of the artifact to download'
+          required: true
+          type: string
+          default: 'dist'
 jobs:
-    Get-code:
+    Download:
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout code
-          uses: actions/checkout@v5
-        - name: Install dependencies
-          run: npm ci
+        - name: Download artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: ${{inputs.artifact-name}}
