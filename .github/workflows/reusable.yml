@@ -1,0 +1,10 @@
+name: Reusable Workflow
+on: workflow_call
+jobs:
+    Get-code:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v5
+        - name: Install dependencies
+          run: npm ci
